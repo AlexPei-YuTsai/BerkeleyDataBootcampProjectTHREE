@@ -17,14 +17,19 @@
 </head>
 
 <body>
+  <!--Bootstrap does their styling by adding in classes. e.g.: "shadow" adds a dropshadow, "navbar" makes a navbar component (Read Docs)-->
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a id="test" class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="https://getbootstrap.com/docs/5.2/examples/dashboard/#">Company name</a>
+    <!--Aria stuff is for screenreaders and blind people, so feel free to take that out. This isn't production code-->
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   </header>
 
+  <!--This is a Bootstrap class that makes things responsive so you can read the page on any screen size-->
   <div class="container-fluid">
+
+    <!--This is the whole screen below the Header-->
     <div class="row">
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
         <div class="position-sticky pt-3 sidebar-sticky">
@@ -102,6 +107,7 @@
         </div>
       </nav>
   
+      <!--More dummy content I stole from the dashboard template. There used to be an animated graph from Chart.js, but it's no longer here because I deleted it. I kept this here mainly to take up space and prove a point-->
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">Dashboard</h1>
@@ -117,10 +123,14 @@
           </div>
         </div>
   
+        <!--As per Leaflet documentation, I assigned a div to contain the map. "mapbox" was made so I could give it padding in the CSS file and make the map look not so crowded on screen. The map does NOT need to be fullscreen, but the container just needs a nonzero height-->
         <div id="mapbox">
           <div id="map"></div>
         </div>
-  
+        
+        <!--Using a similar method as above, you could probably port in Plotly charts too-->
+
+        <!--More dummy content to fill space-->
         <h2>Section title</h2>
         <div class="table-responsive">
           <table class="table table-striped table-sm">
@@ -174,8 +184,10 @@
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <!--Leaflet JS-->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <!--Bootstrap JS-->
+    <!--Bootstrap and Popper(Dependency) JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <!--My Scripts-->
   <script src="./static/js/logic.js"></script>
 </body>
