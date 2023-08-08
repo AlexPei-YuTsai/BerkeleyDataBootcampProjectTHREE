@@ -1,0 +1,12 @@
+#map{
+  height: 350px;
+}
+
+#mapbox{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#test{
+  color:red;
+}

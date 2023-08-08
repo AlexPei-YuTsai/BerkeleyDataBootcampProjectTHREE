@@ -41,25 +41,6 @@ def home():
     # List all the available routes.
     return render_template("home.html")
 
-@app.route("/other")
-def other():
-    # List all the available routes.
-    return render_template("other.html")
-
-@app.route("/test/<value>/<times>")
-def test(value, times):
-    return render_template("test.html", content=value, i=int(times))
-#https://flask.palletsprojects.com/en/2.3.x/quickstart/#routing
-# https://flask.palletsprojects.com/en/2.3.x/tutorial/blog/
-
-@app.route("/nothing")
-def nothing():
-    return redirect(url_for("test", value="Nothing", times=10))
-
-@app.route("/list")
-def list():
-    return render_template("list.html", content=["A", "B", "C", "D", "E"])
-
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
