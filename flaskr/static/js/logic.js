@@ -65,4 +65,9 @@ yaxis:{
 
 Plotly.newPlot("plot", plotData, plotLayout);
 
-console.log(a)
+d3.json("/test").then(function(data){
+    console.log(data);
+    for (const [key, value] of Object.entries(data)) {
+        console.log(key, value);
+      }
+});
