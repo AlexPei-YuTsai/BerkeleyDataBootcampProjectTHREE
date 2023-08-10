@@ -36,9 +36,11 @@
         <label class="mt-1 mb-1" for="select1">View Your Map:</label>
         <select class="form-control" id="select1" onchange="optionChanged(this.value)">
           <option>By Abundance</option>
-          <option>By Depth</option>
+          <option>By Population</option>
           <option>By Composition</option>
         </select>
+        <br>
+        <p id="blab">Understandably, microplastic abundance is highest near cities of high industrial production and consumption.</p>
       </div>
     
       <div id="mapbox" class="col-md-10">
@@ -56,6 +58,34 @@
       </div>
       <div class="col-md-6">
         <div id="plot2"></div>
+      </div>
+    </div>
+    <div class="row p-2 m-2 chart shadow">
+      <div class="form-group col-md-2 gap-2 mt-2 mb-2">
+        <h5>Scatter Plot Visualization</h5>
+        
+        <label class="mt-1 mb-1" for="select2">Choose your X:</label>
+        <select class="form-control" id="select2" onchange="XChanged(this.value)">
+          <option>Depth</option>
+          <option>Distance</option>
+          <option>Plastic Abundance</option>
+          <option>Proportion of Fibrous Plastics</option>
+          <option>Proportion of Non-Fibrous Plastics</option>
+          <option>Local Population Density</option>
+        </select>
+        <br>
+        <label class="mt-1 mb-1" for="select3">Choose your Y:</label>
+        <select class="form-control" id="select3" onchange="YChanged(this.value)">
+          <option>Depth</option>
+          <option>Distance</option>
+          <option selected>Plastic Abundance</option>
+          <option>Proportion of Fibrous Plastics</option>
+          <option>Proportion of Non-Fibrous Plastics</option>
+          <option>Local Population Density</option>
+        </select>
+      </div>
+      <div class="col-md-10">
+        <div id="plot3"></div>
       </div>
     </div>
     

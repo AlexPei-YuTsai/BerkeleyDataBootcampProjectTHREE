@@ -178,7 +178,6 @@ function setOtherMap(data){
     
     layerControl = L.control.layers(baseMaps, overlayMaps, {collapsed:false}).addTo(map);   
 }
-
 function stackChart(where, labels, stat1, stat2, name1, name2, value){
     var trace1 = {
         x: labels,
@@ -212,7 +211,6 @@ function stackChart(where, labels, stat1, stat2, name1, name2, value){
 // Initialize Map and Charts and bring data in for processing
 d3.json("/api/init").then(function(data){
     plastic = data;
-    console.log(plastic);
 
     defaultMap(data);    
 }).then(function(){
@@ -236,7 +234,15 @@ d3.json("/api/init").then(function(data){
         propnarray.push(element["properties"]["Prop_NonFiber"]);
     });
 
-    //stackChart(labels, stat1, stat2, name1, name2)
+    var trace1 = {
+        x: deptharray,
+        y: plasarray,
+        mode: 'markers',
+        type: 'scatter'
+      };
+    var data = [trace1];
+
+    Plotly.newPlot('plot3', data);
 });
 
 d3.json("/api/agg/Continent").then(function(data){
@@ -252,6 +258,8 @@ d3.json("/api/agg/Continent").then(function(data){
     });
 
     stackChart("plot2", labels, propf, propn, "Fibrous Plastic", "Non-Fibrous Plastic", "By Area")
+
+    
 });
 
 d3.json("/api/agg/Habitat_Type").then(function(data){
@@ -276,11 +284,48 @@ function optionChanged(value){
     layerControl.remove();
     if (value=="By Abundance"){ 
         defaultMap(plastic);
+        d3.select("#blab").text("Understandably, microplastic abundance is highest near cities of high industrial production and consumption.");
     }
-    if (value=="By Depth"){
+    if (value=="By Population"){
         setMap(plastic);
+        d3.select("#blab").text("This illustrates the mean population density around where the sample is collected - In other words, how many are potentially affected.");
     }
     if (value=="By Composition"){
         setOtherMap(plastic);
-    }; 
+        d3.select("#blab").text("The more cable and fishing wire you can expect, the bigger the dots become.");
+    };
 };
+
+function XChanged(value){
+    let options = {
+        "Depth":deptharray,
+        "Distance":distancearray,
+        "Plastic Abundance":plasarray,
+        "Proportion of Fibrous Plastics":propfarray,
+        "Proportion of Non-Fibrous Plastics":propnarray,
+        "Local Population Density":poparray
+    }
+
+    let updatePlotData = {
+        x:[options[value]]
+    };
+
+    Plotly.update("plot3", updatePlotData);
+}
+
+function YChanged(value){
+    let options = {
+        "Depth":deptharray,
+        "Distance":distancearray,
+        "Plastic Abundance":plasarray,
+        "Proportion of Fibrous Plastics":propfarray,
+        "Proportion of Non-Fibrous Plastics":propnarray,
+        "Local Population Density":poparray
+    }
+
+    let updatePlotData = {
+        y:[options[value]]
+    };
+
+    Plotly.update("plot3", updatePlotData);
+}
