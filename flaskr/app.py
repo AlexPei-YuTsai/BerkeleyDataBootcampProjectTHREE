@@ -37,7 +37,6 @@ def home():
     # Habitat Type
     # Water Depth
 
-
 # This section retrieves data 
 @app.route("/api/init")
 def test():
@@ -65,10 +64,12 @@ def test():
 
         if (denominator!=0):
         # Fill in the rest of the desired details here
+            feature['properties']["ID"]=row["ID"]
             feature["geometry"]["coordinates"]=[row['Longitude €'], row['Latitude (N)']]
             feature["properties"]["Area"]=row['Continent']
             feature["properties"]["Biome"]=row['Habitat_Type']
             feature["properties"]["Depth"]=row['Water_Depth (m)']
+            feature["properties"]["Distance"]=row['Distance_land (miles)']
             feature["properties"]["Population"]=row['Mean Population in 110 km radius (no. people km-2)']
             feature["properties"]["Fiber_Abundance"]=row['Corrected_Fibers (n kg-1)']
             feature["properties"]["NonFiber_Abundance"]=row['Corrected_Non-Fibrous (n kg-1)']
@@ -81,14 +82,30 @@ def test():
         
     return jsonify(result_list)
     
-@app.route("/api/agg")
-def agg():
+@app.route("/api/agg/<value>")
+def agg(value):
     # Gotta recreate your engine every time
     Plastic_df.to_sql('oceanplastic', con=engine, if_exists="replace", index=False)
     with engine.connect() as conn:
-        results = conn.execute("SELECT * FROM oceanplastic GROUP BY Continent ORDER BY COUNT(ID) DESC").fetchall()
+        results = conn.execute(f"SELECT COUNT(ID), {str(value)}, SUM([Corrected_Fibers (n kg-1)]), SUM([Corrected_Non-Fibrous (n kg-1)]), AVG([Water_Depth (m)]), AVG([Mean Population in 110 km radius (no. people km-2)]), AVG([Distance_land (miles)]) FROM oceanplastic GROUP BY {str(value)} ORDER BY COUNT(ID) DESC LIMIT 10").fetchall()
     
-    return results
+    # Set up a list of GeoJSON points to push
+    result_list = []
+    for row in results:
+        item={}
+        
+        item[str(value)]=row[1]
+        item["Count"]=row[0]
+        item["Fibers"]=row[2]
+        item["NonFibers"]=row[3]
+        item["Depth"]=row[4]
+        item["Population"]=row[5]
+        item["Distance"]=row[6]
+
+        # Append completed item to list
+        result_list.append(item)
+        
+    return jsonify(result_list)
 
 @app.errorhandler(404)
 def page_not_found(error):

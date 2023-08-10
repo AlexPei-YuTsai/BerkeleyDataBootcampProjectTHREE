@@ -31,24 +31,13 @@
     <!--This is the whole screen below the Header-->
     <div class="row p-2">
       <div class="form-group col-md-2 gap-2 mt-2 mb-2">
-        <h5>Customize Your View</h5>
+        <h5>Customize Your Views</h5>
         
-        <label class="mt-1 mb-1" for="select1">Choose your grouping:</label>
+        <label class="mt-1 mb-1" for="select1">View Your Map:</label>
         <select class="form-control" id="select1" onchange="optionChanged(this.value)">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-
-        <label class="mt-1 mb-1" for="select2">Option 2:</label>
-        <select class="form-control" id="select2" onchange="optionChanged(this.value)">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+          <option>By Abundance</option>
+          <option>By Depth</option>
+          <option>By Composition</option>
         </select>
       </div>
     
@@ -63,15 +52,10 @@
     </div>
     <div class="row p-2 m-2 chart shadow">
       <div class="col-md-6">
-        <div id="plot"></div>
+        <div id="plot1"></div>
       </div>
       <div class="col-md-6">
         <div id="plot2"></div>
-      </div>
-    </div>
-    <div class="row p-2 m-2 chart shadow">
-      <div>
-        <div id="plot3"></div>
       </div>
     </div>
     
