@@ -1,5 +1,5 @@
 # Berkeley Data Bootcamp: Project 3
-> Crowdfunding Data: The Extract, Transform, Load (ETL) Process
+> How do we communicate data through different files and filetypes to create a front-end display?
 
 ## Folder Contents
 - A main `flaskr` folder containing:
