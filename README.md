@@ -31,5 +31,28 @@ conda create -n dev python=3.10 anaconda -y
 Sources:
   - All data came from [Cecilia Martin's paper](https://aslopubs.onlinelibrary.wiley.com/doi/pdf/10.1002/lol2.10257) and [her downloadable dataset](https://data.mendeley.com/datasets/6k38hr5zhw/1).
 
+## Preview:
+
+Below is a preview of the content you'd see, assuming everything loads correctly.
+
+![Map on load-in](https://cdn.discordapp.com/attachments/1107347677831778364/1172086605981438014/image.png)
+
+The map can be toggled with a dropdown to the side and swapped for a different view.
+
+![Toggleable options of the map](https://cdn.discordapp.com/attachments/1107347677831778364/1172086924807249960/image.png)
+
+Scrolling down reveals some Plotly graphs of the data collected.
+
+![Plotly graphs](https://cdn.discordapp.com/attachments/1107347677831778364/1172138879697043497/image.png)
+
+What's interesting about Plotly is that you can zoom in to see the charts on a more granular level.
+
+![Plotly graph - zoomed in](https://cdn.discordapp.com/attachments/1107347677831778364/1172139287257567292/image.png)
+
+Finally, there's a scatter plot with some toggleable options on the side so you can see for yourself if anything correlates.
+
+![Toggleable scatter plot](https://cdn.discordapp.com/attachments/1107347677831778364/1172139286922006679/image.png)
+
 ## FINAL NOTES
 > Project completed on August 10, 2023
+- This was a solo project. Admittedly, I was too ambitious and wanted to do too much without the time or manpower at my disposal.
